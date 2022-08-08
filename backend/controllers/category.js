@@ -15,7 +15,7 @@ exports.createCategory = asyncHandler(async (req, res) => {
 //@route    GET /api/categories
 //@access   Private/user
 exports.getCategories = asyncHandler(async (req, res) => {
-    const pageSize = 5;
+    const pageSize = 100;
     const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword ? req.query.keyword : null;
 

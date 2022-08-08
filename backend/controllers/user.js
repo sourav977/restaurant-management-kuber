@@ -83,7 +83,7 @@ exports.getUser = asyncHandler(async (req, res) => {
 //@access   Private/admin
 exports.getUsers = asyncHandler(async (req, res) => {
     //pages constants
-    const pageSize = 5;
+    const pageSize = 100;
     const page = Number(req.query.pageNumber) || 1;
     //check for keywords
     const keyword = req.query.keyword ? req.query.keyword : null;

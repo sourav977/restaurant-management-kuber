@@ -21,7 +21,7 @@ exports.createClient = asyncHandler(async (req, res) => {
 //@route    GET /api/clients
 //@access   Private/user
 exports.getClients = asyncHandler(async (req, res) => {
-    const pageSize = 5;
+    const pageSize = 100;
     const page = Number(req.query.pageNumber) || 1;
     const keyword = req.query.keyword ? req.query.keyword : null;
     let options = {
