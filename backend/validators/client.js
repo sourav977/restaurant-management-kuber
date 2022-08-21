@@ -20,10 +20,5 @@ exports.clientCreateValidator = [
         .notEmpty()
         .withMessage('Address is required')
         .isEmail()
-        .withMessage('Email must be a valid format'),
-    check('dni')
-        .notEmpty()
-        .withMessage('DNI is required')
-        .isString()
-        .withMessage('DNI must be a String')
+        .withMessage('Email must be a valid format')
 ]

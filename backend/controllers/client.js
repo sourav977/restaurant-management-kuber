@@ -11,8 +11,7 @@ exports.createClient = asyncHandler(async (req, res) => {
         name,
         address,
         phone,
-        email,
-        dni,
+        email        
     });
     res.status(201).json(createdClient);
 });
@@ -41,8 +40,7 @@ exports.getClients = asyncHandler(async (req, res) => {
                     { name: { [Op.like]: `%${keyword}%` } },
                     { address: { [Op.like]: `%${keyword}%` } },
                     { phone: { [Op.like]: `%${keyword}%` } },
-                    { email: { [Op.like]: `%${keyword}%` } },
-                    { dni: { [Op.like]: `%${keyword}%` } },
+                    { email: { [Op.like]: `%${keyword}%` } }
                 ],
             },
         };
@@ -80,8 +78,7 @@ exports.updateClient = asyncHandler(async (req, res) => {
         client.name = name;
         client.address = address;
         client.phone = phone;
-        client.email = email;
-        client.dni = dni;
+        client.email = email;        
         const updatedClient = await client.save();
         res.json(updatedClient);
     } else {

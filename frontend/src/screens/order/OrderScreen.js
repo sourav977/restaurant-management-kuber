@@ -25,7 +25,7 @@ const OrderScreen = ({ history }) => {
     const { loading, error, orders, page, pages } = orderList;
 
     useEffect(() => {
-        dispatch(listOrders({ keyword, pageNumber, delivery: false }));
+        dispatch(listOrders({ keyword, pageNumber}));
     }, [dispatch, history, userInfo, pageNumber, keyword]);
 
     const renderCreateButton = () => (
@@ -54,13 +54,9 @@ const OrderScreen = ({ history }) => {
                         <td>{order.id}</td>
                         <td>{order.client.name}</td>
                         <td className="d-none d-sm-table-cell h4">
-                            {order.table ? (
+                            {(
                                 <span className={"badge bg-primary"}>
                                     {order.table.name}
-                                </span>
-                            ) : (
-                                <span className={"badge bg-info"}>
-                                    DELIVERY
                                 </span>
                             )}
                         </td>

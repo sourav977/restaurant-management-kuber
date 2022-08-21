@@ -35,7 +35,6 @@ const OrderEditScreen = ({ history, match }) => {
     const [table, setTable] = useState(null);
     const [total, setTotal] = useState(0);
     const [client, setClient] = useState(null);
-    const [delivery, setDelivery] = useState(false);
     const [note, setNote] = useState("");
     const [productsInOrder, setProductsInOrder] = useState([]);
     const [productsAlreadyOrdered, setProductsAlreadyOrdered] = useState([]);
@@ -68,11 +67,7 @@ const OrderEditScreen = ({ history, match }) => {
         if (successUpdate) {
             dispatch({ type: ORDER_UPDATE_RESET });
             dispatch({ type: ORDER_DETAILS_RESET });
-            if (delivery) {
-                history.push("/delivery");
-            } else {
-                history.push("/active");
-            }
+            history.push("/active");
         }
     }, [successUpdate]);
 
@@ -86,7 +81,6 @@ const OrderEditScreen = ({ history, match }) => {
                 setTable(order.table ? order.table.id : null);
                 setClient(order.client ? order.client.id : null);
                 setNote(order.note ? order.note : note);
-                setDelivery(order.delivery ? order.delivery : delivery);
 
                 if (order.products) {
                     /* Format products */
@@ -109,7 +103,7 @@ const OrderEditScreen = ({ history, match }) => {
         e.preventDefault();
         let errorsCheck = {};
 
-        if (!table && !delivery) {
+        if (!table) {
             errorsCheck.table = "Table is required";
         }
         if (!client) {
@@ -130,10 +124,9 @@ const OrderEditScreen = ({ history, match }) => {
             const order = {
                 id: orderId,
                 total: total,
-                tableId: !delivery ? table : null,
+                tableId: table,
                 clientId: client,
                 products: productsInOrder,
-                delivery: delivery,
                 note: note,
             };
 
@@ -212,9 +205,6 @@ const OrderEditScreen = ({ history, match }) => {
         </>
     );
 
-    const renderDeliveryCheckbox = () => (
-        <Checkbox name={"delivery"} data={delivery} setData={setDelivery} />
-    );
 
     const renderNoteTextarea = () => (
         <Textarea
@@ -271,9 +261,6 @@ const OrderEditScreen = ({ history, match }) => {
                                                 <div className="col-12 col-md-6">
                                                     {renderClientsSelect()}
                                                 </div>
-                                            </div>
-                                            <div className="mt-4">
-                                                {renderDeliveryCheckbox()}
                                             </div>
                                             {renderNoteTextarea()}
                                         </div>

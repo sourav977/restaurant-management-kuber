@@ -59,7 +59,7 @@ export const getStatistics = () => async (dispatch, getState) => {
 
 //get all orders with pagination
 export const listOrders = (options) => async (dispatch, getState) => {
-    const { keyword, pageNumber, delivery } = options;
+    const { keyword, pageNumber } = options;
     try {
         dispatch({
             type: ORDER_LIST_REQUEST,
@@ -79,9 +79,7 @@ export const listOrders = (options) => async (dispatch, getState) => {
 
         //get all orders
         const { data } = await axios.get(
-            `/api/orders/?keyword=${keyword}&pageNumber=${pageNumber}${
-                delivery ? "&delivery=true" : ""
-            }`,
+            `/api/orders/?keyword=${keyword}&pageNumber=${pageNumber}`,
             config
         );
 

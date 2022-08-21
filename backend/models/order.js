@@ -29,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         {
             total: DataTypes.DOUBLE,
             isPaid: DataTypes.BOOLEAN,
-            delivery: DataTypes.BOOLEAN,
             note: DataTypes.STRING,
             userId: DataTypes.INTEGER,
             clientId: DataTypes.INTEGER,
