@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const SmallBox = ({number, paragraph, link, color, icon}) => {
     return ( 
-        <div className="col-lg-3 col-6">
+        <div className="col-lg-6 col-6">
             <div className={`small-box bg-${color}`}>
                 <div className="inner">
                     <h3>{number}</h3>

@@ -29,7 +29,6 @@ const ClientScreen = ({ history }) => {
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [dni, setDni] = useState("");
 
     const [errors, setErrors] = useState({});
 
@@ -54,8 +53,7 @@ const ClientScreen = ({ history }) => {
             setName("");
             setAddress("");
             setPhone("");
-            setEmail("");
-            setDni("");
+            setEmail("");            
             setModalIsOpen(false);
         }
     }, [dispatch, history, userInfo, pageNumber, keyword, createSuccess]);
@@ -79,9 +77,6 @@ const ClientScreen = ({ history }) => {
             errorsCheck.email = "Email is required";
         }
 
-        if (!dni) {
-            errorsCheck.dni = "DNI is required";
-        }
 
         if (Object.keys(errorsCheck).length > 0) {
             setErrors(errorsCheck);
@@ -94,8 +89,7 @@ const ClientScreen = ({ history }) => {
                 name: name,
                 address: address,
                 phone: phone,
-                email: email,
-                dni: dni,
+                email: email
             };
 
             dispatch(createClient(client));
@@ -144,14 +138,7 @@ const ClientScreen = ({ history }) => {
                         data={email}
                         setData={setEmail}
                         errors={errors}
-                    />
-                    <Input
-                        name={"dni"}
-                        type={"text"}
-                        data={dni}
-                        setData={setDni}
-                        errors={errors}
-                    />
+                    />                    
                     <hr />
                     <button type="submit" className="btn btn-primary">
                         Submit
@@ -175,7 +162,6 @@ const ClientScreen = ({ history }) => {
                     <th className="d-none d-sm-table-cell">Address</th>
                     <th className="d-none d-sm-table-cell">Phone</th>
                     <th className="d-none d-sm-table-cell">Email</th>
-                    <th className="d-none d-sm-table-cell">DNI</th>
                     <th className="d-none d-sm-table-cell">Created At</th>
                     <th></th>
                 </tr>
@@ -194,7 +180,6 @@ const ClientScreen = ({ history }) => {
                         <td className="d-none d-sm-table-cell">
                             {client.email}
                         </td>
-                        <td className="d-none d-sm-table-cell">{client.dni}</td>
                         <td className="d-none d-sm-table-cell">
                             {client.createdAt.slice(0, 10)}
                         </td>

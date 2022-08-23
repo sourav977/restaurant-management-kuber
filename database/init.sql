@@ -63,21 +63,19 @@ CREATE TABLE IF NOT EXISTS `Clients` (
   `address` varchar(255) NOT NULL DEFAULT 'Address',
   `phone` varchar(255) NOT NULL DEFAULT '999999999',
   `email` varchar(255) NOT NULL,
-  `dni` varchar(255) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `dni` (`dni`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dump data for the `Clients` table
 --
 
-INSERT INTO `Clients` (`id`, `name`, `address`, `phone`, `email`, `dni`, `createdAt`, `updatedAt`) VALUES
-(1, 'Sourav Patnaik', 'Bhubaneswar', '999999999', 'abc@gamil.com', '999999999', '2022-08-06 05:50:51', '2022-08-06 05:50:51'),
-(2, 'Sikan', 'CP, Delhi 90030', '3804123123', 'sikan@example.com', '40123123', '2022-08-06 05:50:51', '2022-08-06 05:50:51');
+INSERT INTO `Clients` (`id`, `name`, `address`, `phone`, `email`, `createdAt`, `updatedAt`) VALUES
+(1, 'Sourav Patnaik', 'Bhubaneswar', '999999999', 'abc@gamil.com', '2022-08-06 05:50:51', '2022-08-06 05:50:51'),
+(2, 'Sikan', 'CP, Delhi 90030', '3804123123', 'sikan@example.com', '2022-08-06 05:50:51', '2022-08-06 05:50:51');
 
 -- --------------------------------------------------------
 
@@ -107,7 +105,6 @@ CREATE TABLE IF NOT EXISTS `Orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `total` double NOT NULL,
   `isPaid` tinyint(1) NOT NULL DEFAULT '0',
-  `delivery` tinyint(1) NOT NULL DEFAULT '0',
   `note` varchar(255) DEFAULT NULL,
   `userId` int(11) NOT NULL,
   `clientId` int(11) NOT NULL,

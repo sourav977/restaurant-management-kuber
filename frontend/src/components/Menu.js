@@ -80,11 +80,7 @@ const Menu = ({ history }) => {
                                         <p> Users</p>
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                            <Link to="/delivery" className="nav-link">
-                                <i className="nav-icon fas fa-truck" />{" "}
-                                <p> Delivery</p>
-                            </Link>
+                                <li className="nav-item">                            
                         </li>
                             </>
                         ) : (

@@ -16,7 +16,7 @@ const {
 //@access   Private/user
 exports.createOrder = asyncHandler(async (req, res) => {
     //get data from request
-    const { total, tableId, clientId, products, delivery, note } = req.body;
+    const { total, tableId, clientId, products, note } = req.body;
 
     await stock(products);
 
@@ -25,20 +25,18 @@ exports.createOrder = asyncHandler(async (req, res) => {
 
         const createdOrder = await Order.create({
             total,
-            tableId: !delivery ? tableId : null,
+            tableId: tableId,
             userId: req.user.id,
             clientId: clientId,
-            delivery: delivery,
             note: note,
         });
 
         //create order products
         await addProductsInOrder(createdOrder, products);
 
-        //update table to occupied
-        if (!delivery) {
-            await updateTable(createdOrder.tableId, true);
-        }
+        //update table to occupied        
+        await updateTable(createdOrder.tableId, true);
+        
 
         //update stock
         await updateProductsStock(products, -1);
@@ -57,7 +55,6 @@ exports.createOrder = asyncHandler(async (req, res) => {
 exports.getOrders = asyncHandler(async (req, res) => {
     const pageSize = 100;
     const page = Number(req.query.pageNumber) || 1;
-    const delivery = Boolean(req.query.delivery) || false;
     const keyword = req.query.keyword ? req.query.keyword : null;
     let options = {
         include: [
@@ -84,19 +81,7 @@ exports.getOrders = asyncHandler(async (req, res) => {
                 ],
             },
         };
-    }
-
-    if (delivery) {
-        options = {
-            ...options,
-            where: {
-                ...options.where,
-                delivery: {
-                    [Op.eq]: true,
-                },
-            },
-        };
-    }
+    }    
 
     const count = await Order.count({ ...options });
     const orders = await Order.findAll({ ...options });
@@ -148,29 +133,30 @@ exports.updateOrder = asyncHandler(async (req, res) => {
     const order = await Order.findByPk(req.params.id, {
         include: { all: true, nested: true },
     });
-    const { total, clientId, tableId, delivery, products, note } = req.body;
+    const { total, clientId, tableId, products, note } = req.body;
 
     if (order) {
         order.clientId = clientId;
-        order.delivery = delivery;
         order.note = note;
 
         /* CHECK TABLE */
         if (order.tableId !== tableId) {
-            if (!order.tableId && !delivery) {
-                /* DELIVERY -> TABLE */
-                await updateTable(tableId, true);
-                order.tableId = tableId;
-            } else if (order.tableId && delivery) {
-                /* TABLE -> DELIVERY */
-                await updateTable(order.tableId, false);
-                order.tableId = null;
-            } else {
+            /*Not require because we are going to have only table orders */
+            // if (!order.tableId && !delivery) {
+            //     /* DELIVERY -> TABLE */
+            //     await updateTable(tableId, true);
+            //     order.tableId = tableId;
+            // } else if (order.tableId && delivery) {
+            //     /* TABLE -> DELIVERY */
+            //     await updateTable(order.tableId, false);
+            //     order.tableId = null;
+            // } else {
+
                 /* TABLE -> TABLE */
                 await updateTable(order.tableId, false);
                 await updateTable(tableId, true);
                 order.tableId = tableId;
-            }
+            //}
         }
 
         /* CHECK PRODUCTS */
@@ -256,13 +242,7 @@ exports.getStatistics = asyncHandler(async (req, res) => {
             isPaid: true,
         },
     });
-
-    const deliveriesMade = await Order.count({
-        where: {
-            delivery: true,
-            isPaid: true,
-        },
-    });
+    
 
     const totalOrdersPaid = await Order.count({
         where: {
@@ -295,7 +275,6 @@ exports.getStatistics = asyncHandler(async (req, res) => {
             total: totalSales,
             today: todaySales,
             orders: totalOrdersPaid,
-            deliveries: deliveriesMade,
         },
         sales,
         orders,

@@ -24,7 +24,6 @@ const ClientEditScreen = ({ history, match }) => {
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const [dni, setDni] = useState("");
 
     const [errors, setErrors] = useState({});
 
@@ -64,8 +63,7 @@ const ClientEditScreen = ({ history, match }) => {
                 setName(client.name);
                 setAddress(client.address);
                 setPhone(client.phone);
-                setEmail(client.email);
-                setDni(client.dni);
+                setEmail(client.email);                
             }
         }
     }, [dispatch, history, clientId, client, successUpdate]);
@@ -87,11 +85,7 @@ const ClientEditScreen = ({ history, match }) => {
         }
         if (!email) {
             errorsCheck.email = "Email is required";
-        }
-
-        if (!dni) {
-            errorsCheck.dni = "DNI is required";
-        }
+        }        
 
         if (Object.keys(errorsCheck).length > 0) {
             setErrors(errorsCheck);
@@ -106,8 +100,7 @@ const ClientEditScreen = ({ history, match }) => {
                     name,
                     address,
                     phone,
-                    email,
-                    dni,
+                    email                    
                 })
             );
         }
@@ -143,13 +136,7 @@ const ClientEditScreen = ({ history, match }) => {
                 setData={setEmail}
                 errors={errors}
             />
-            <Input
-                name={"DNI"}
-                type={"text"}
-                data={dni}
-                setData={setDni}
-                errors={errors}
-            />
+
 
             <hr />
             <button type="submit" className="btn btn-success">

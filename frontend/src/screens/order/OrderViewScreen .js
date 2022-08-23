@@ -47,11 +47,7 @@ const OrderViewScreen = ({ history, match }) => {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: ORDER_UPDATE_RESET });
-            if (order.delivery) {
-                history.push("/delivery");
-            } else {
-                history.push("/active");
-            }
+            history.push("/active");
         }
         if (order) {
             if (!order.id || order.id !== orderId) {
