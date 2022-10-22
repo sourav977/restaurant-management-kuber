@@ -1,0 +1,55 @@
+{
+    "name": "Kohinoor",
+    "version": "1.0.0",
+    "description": "A Restaurant Management system",
+    "main": "server.js",
+    "engines": {
+        "node": "14.13.1",
+        "npm": "6.14.8"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js",
+        "dev": "nodemon server.js",
+        "debug": "NODE_OPTIONS='--openssl-legacy-provider' next dev -p 5000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sourav977/restaurant-management-kuber.git"
+    },
+    "keywords": [
+        "Kohinoor",
+        "javascript",
+        "react",
+        "nodejs",
+        "mysql",
+        "sql",
+        "redux"
+    ],
+    "author": "Sourav Patnaik",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/sourav977/restaurant-management-kuber/issues"
+    },
+    "homepage": "https://github.com/sourav977/restaurant-management-kuber#readme",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "express-async-handler": "^1.2.0",
+        "express-validator": "^6.14.2",
+        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.10.0",
+        "mysql2": "^2.3.3",
+        "path": "^0.12.7",
+        "prettier": "^2.7.1",
+        "react-modal": "^3.15.1",
+        "sequelize": "^6.21.3"
+    },
+    "devDependencies": {
+        "multer": "^1.4.5-lts.1",
+        "nodemon": "^2.0.19",
+        "sequelize-cli": "^6.4.1"
+    }
+}
+
