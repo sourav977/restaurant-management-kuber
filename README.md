@@ -30,7 +30,7 @@ Hopefully with all of the changes, it would help us to manage our dine-in restau
 ## Steps to Run the application
 - Entire application is Dockerized.
 - chdir to Project Directory. 
-- Run below command in terminal to directly run this applicatioon in your local machine
+- Run below command in terminal to directly run this application in your local machine.
     -   `docker-compose up -d`
 
     -   ### Below is the `output`
@@ -44,3 +44,39 @@ Hopefully with all of the changes, it would help us to manage our dine-in restau
         `Creating restaurant-management-kuber_nginx_1    ... done`
 
 - goto browser `http://localhost:3000/` for Frontend view.
+
+## Application Screenshots
+
+- ### Login Page
+
+<img width="1440" alt="Screenshot 2022-10-22 at 9 39 04 PM" src="https://user-images.githubusercontent.com/30291806/197349744-f02737f1-b405-4a60-8cd3-4b17b26d171a.png">
+
+
+- ### Admin Dashboard
+
+<img width="1440" alt="Screenshot 2022-10-22 at 9 38 38 PM" src="https://user-images.githubusercontent.com/30291806/197349799-fb24c452-81ab-434b-a5f9-dd182fd99f81.png">
+
+
+- ### User Dashboard
+
+<img width="1440" alt="Screenshot 2022-10-22 at 9 40 14 PM" src="https://user-images.githubusercontent.com/30291806/197349948-35c9a8db-9d34-4334-a06a-51bbf9f70956.png">
+
+
+- ### Category Table
+
+<img width="1440" alt="Screenshot 2022-10-22 at 9 50 41 PM" src="https://user-images.githubusercontent.com/30291806/197350382-74ec2760-5d2c-456d-b3b0-84104aaf385a.png">
+
+
+- ### Products Table
+
+<img width="1440" alt="Screenshot 2022-10-22 at 9 38 51 PM" src="https://user-images.githubusercontent.com/30291806/197349773-7d78f7e4-1745-4c99-87ae-7161c3b99bd7.png">
+
+
+- ### Placing Order
+
+<img width="1440" alt="Screenshot 2022-10-22 at 2 56 24 PM" src="https://user-images.githubusercontent.com/30291806/197349868-cfb3d92b-9d97-477c-8cf1-3b132b7f3708.png">
+
+
+- ### Payment
+
+<img width="1440" alt="Screenshot 2022-10-22 at 2 57 19 PM" src="https://user-images.githubusercontent.com/30291806/197349841-c5be846f-b8eb-445e-b57b-8d1f2577d65d.png">
