@@ -236,22 +236,22 @@ INSERT INTO `Users` (`id`, `name`, `email`, `password`, `image`, `isAdmin`, `cre
 -- Filters for the `OrderProducts` table
 --
 ALTER TABLE `OrderProducts`
-  ADD CONSTRAINT `orderproducts_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `Orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orderproducts_ibfk_2` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orderproducts_orders_orderid` FOREIGN KEY (`orderId`) REFERENCES `Orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orderproducts_products_productid` FOREIGN KEY (`productId`) REFERENCES `Products` (`id`) ON DELETE CASCADE;
 
 --
 -- Filters for the `Orders` table
 --
 ALTER TABLE `Orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`clientId`) REFERENCES `Clients` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`tableId`) REFERENCES `Tables` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `orders_users_userid` FOREIGN KEY (`userId`) REFERENCES `Users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_clients_clientid` FOREIGN KEY (`clientId`) REFERENCES `Clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `orders_tables_tableId` FOREIGN KEY (`tableId`) REFERENCES `Tables` (`id`) ON DELETE CASCADE;
 
 --
 -- Filters for the `Products` table
 --
 ALTER TABLE `Products`
-  ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `products_categories_categoryId` FOREIGN KEY (`categoryId`) REFERENCES `Categories` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
