@@ -17,7 +17,7 @@ Our Restaurant Manager will have all the admin rights. He will login to ‘Kuber
 Hopefully with all of the changes, it would help us to manage our dine-in restaurant run much more smoothly. Our ‘Kuber’ system will hopefully also be more reliable and user friendly to everyone. While it will require some training for employees, once the system is in place, the benefits will greatly outweigh the costs of implementing the system since using the computer to do most daily tasks will be much faster than a paper based system.
 
 
-## Syatem Requirements
+## System Requirements
 - frontend -> react v16.3.1
 - backend -> Express v4.18.1, npm: '8.19.1', node: '18.9.0',
 - mysql -> v5.7
